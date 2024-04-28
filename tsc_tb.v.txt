@@ -1,0 +1,30 @@
+`timescale 1ns/1ps
+
+module tsc_tb;
+
+wire [2:0] nl, sl, el, wl;
+reg clk, rst;
+
+tsc DUT (
+    .nl(nl),
+    .sl(sl),
+    .el(el),
+    .wl(wl),
+    .clk(clk),
+    .rst(rst)
+);
+
+initial begin
+    clk = 1'b1;
+    forever #5 clk = ~clk;
+end
+
+initial begin
+    rst = 1'b1;
+    #15;
+    rst = 1'b0;
+    #1000;
+    $stop;
+end
+
+endmodule
